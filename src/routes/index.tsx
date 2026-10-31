@@ -150,7 +150,7 @@ function Index() {
           errors={errors}
           loading={loading}
           progress={progress}
-          stepLabel={STEPS[stepIndex]}
+          stepLabel={STEPS[stepIndex] ?? STEPS[0]}
         />
         {result && (
           <>

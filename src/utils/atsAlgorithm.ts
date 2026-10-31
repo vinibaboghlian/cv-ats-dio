@@ -108,7 +108,7 @@ function capitalize(s: string): string {
 /* ------------------------------------------------------------------ */
 
 /** [Label, ...extra normalized aliases]. The normalized label is always an alias. */
-const SKILL_DICTIONARY: string[][] = [
+const SKILL_DICTIONARY: Array<[string, ...string[]]> = [
   // Front-end / web
   ["React", "react.js", "reactjs"],
   ["TypeScript", "ts"],
