@@ -677,7 +677,7 @@ export function buildOptimizedResume(resume: string, job: string, analysis: AtsA
     contacts,
     summary: parts.join(" "),
     experiences: parseExperiences(parsed.sections.experience ?? []),
-    skills: skills.slice(0, 32),
+    skills: skills.slice(0, 40),
     sections,
   };
 }
