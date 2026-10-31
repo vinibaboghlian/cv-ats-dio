@@ -626,7 +626,7 @@ export function buildOptimizedResume(resume: string, job: string, analysis: AtsA
   const headline = analysis.jobTitle.replace(/\s*\((a|o)\)/gi, "") || restHeader[0] || "";
 
   // Summary targeted at the role
-  const originalSummary = firstSentences((parsed.sections.summary ?? []).join(" "), 2);
+  const originalSummary = firstSentences((parsed.sections['summary'] ?? []).join(" "), 2);
   const topMatched = analysis.matched.slice(0, 5).map((k) => k.label);
   const focus = analysis.missing.slice(0, 3).map((k) => k.label);
   const parts: string[] = [];
@@ -643,7 +643,7 @@ export function buildOptimizedResume(resume: string, job: string, analysis: AtsA
   );
 
   // Skills: job-relevant first, then additions, then the rest of the original list
-  const originalSkills = splitSkills(parsed.sections.skills ?? []);
+  const originalSkills = splitSkills(parsed.sections['skills'] ?? []);
   const seen = new Set<string>();
   const skills: ResumeSkill[] = [];
   const push = (label: string, added: boolean) => {
@@ -665,7 +665,7 @@ export function buildOptimizedResume(resume: string, job: string, analysis: AtsA
     const lines = parsed.sections[key];
     if (lines?.length) {
       sections.push({
-        title: SECTION_TITLES[key],
+        title: SECTION_TITLES[key] ?? key,
         lines: lines.map((l) => l.replace(BULLET_RE, "").trim()),
       });
     }
@@ -676,7 +676,7 @@ export function buildOptimizedResume(resume: string, job: string, analysis: AtsA
     headline,
     contacts,
     summary: parts.join(" "),
-    experiences: parseExperiences(parsed.sections.experience ?? []),
+    experiences: parseExperiences(parsed.sections['experience'] ?? []),
     skills: skills.slice(0, 40),
     sections,
   };
