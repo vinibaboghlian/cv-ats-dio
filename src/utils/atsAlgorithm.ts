@@ -507,7 +507,7 @@ function parseResume(text: string): ParsedResume {
       continue;
     }
     if (!line) continue;
-    if (current) sections[current].push(line);
+    if (current) (sections[current] ??= []).push(line);
     else header.push(line);
   }
   return { header, sections, order };
