@@ -64,8 +64,8 @@ export interface AnalysisResult {
 }
 
 export interface ValidationErrors {
-  resume?: string;
-  job?: string;
+  resume?: string | undefined;
+  job?: string | undefined;
 }
 
 /* ------------------------------------------------------------------ */

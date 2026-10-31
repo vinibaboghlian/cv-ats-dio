@@ -31,7 +31,7 @@ interface InputCardProps {
   placeholder: string;
   sampleLabel: string;
   onSample: () => void;
-  error?: string;
+  error?: string | undefined;
   showChars?: boolean;
   id: string;
 }
