@@ -518,7 +518,7 @@ const WEAK_STARTS: Array<[RegExp, (m: RegExpMatchArray) => string]> = [
     /^(?:fui |era )?respons[aá]vel (pelo|pela|pelos|pelas|por)\s+/i,
     (m) => {
       const map: Record<string, string> = { pelo: "o ", pela: "a ", pelos: "os ", pelas: "as ", por: "" };
-      return `Conduzi ${map[m[1].toLowerCase()]}`;
+      return `Conduzi ${map[(m[1] ?? "").toLowerCase()]}`;
     },
   ],
   [/^trabalh(?:ei|ava) com\s+/i, () => "Colaborei com "],
@@ -529,21 +529,21 @@ const WEAK_STARTS: Array<[RegExp, (m: RegExpMatchArray) => string]> = [
       const map: Record<string, string> = {
         de: "em", do: "no", da: "na", dos: "nos", das: "nas", em: "em", no: "no", na: "na", nos: "nos", nas: "nas",
       };
-      return `Atuei ativamente ${map[m[1].toLowerCase()]} `;
+      return `Atuei ativamente ${map[(m[1] ?? "").toLowerCase()]} `;
     },
   ],
   [
     /^ajud(?:ei|ava)(?: (a|na|no|nas|nos|em|com))?\s+/i,
     (m) => {
       const map: Record<string, string> = { a: "para ", na: "para a ", no: "para o ", nas: "para as ", nos: "para os ", em: "em ", com: "com " };
-      return `Contribuí ${m[1] ? map[m[1].toLowerCase()] : "para "}`;
+      return `Contribuí ${m[1] ? map[(m[1] ?? "").toLowerCase()] : "para "}`;
     },
   ],
   [
     /^cuid(?:ei|ava) (de|da|do|das|dos)\s+/i,
     (m) => {
       const map: Record<string, string> = { de: "", da: "a ", do: "o ", das: "as ", dos: "os " };
-      return `Gerenciei ${map[m[1].toLowerCase()]}`;
+      return `Gerenciei ${map[(m[1] ?? "").toLowerCase()]}`;
     },
   ],
   [/^(?:fazia|fiz)\s+/i, () => "Desenvolvi "],
@@ -552,7 +552,7 @@ const WEAK_STARTS: Array<[RegExp, (m: RegExpMatchArray) => string]> = [
   [/^escrevia\s+/i, () => "Escrevi "],
   [/^desenvolvia\s+/i, () => "Desenvolvi "],
   [/^dava suporte\s+/i, () => "Prestei suporte "],
-  [/^(\p{L}{3,})ava\s+/iu, (m) => `${capitalize(m[1].toLowerCase())}ei `],
+  [/^(\p{L}{3,})ava\s+/iu, (m) => `${capitalize((m[1] ?? "").toLowerCase())}ei `],
 ];
 
 export function rewriteBullet(raw: string): string {
